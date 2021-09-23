@@ -25,6 +25,7 @@
   padding: 1.2rem;
   transform: translateX(200%) scale(0.5);
   transition: transform 300ms ease;
+  z-index: 99;
 }
 .loader-container.active {
   transform: translateX(0%) scale(0.5);
