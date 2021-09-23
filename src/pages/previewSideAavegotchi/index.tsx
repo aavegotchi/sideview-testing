@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Loader } from "../../components/loader";
 import { Tuple } from "../../types";
 import { Collaterals, collateralToAddress } from "../../vars";
@@ -84,21 +84,24 @@ const PreviewSideAavegotchiPage = ({ contract }: Props) => {
     }
   };
 
-  // Once Aavegotchis have fetched, get the first Aavegotchis sideviews + Preview gotchi sidviews
-  useEffect(() => {
-    if (contract) {
-      getPreviewAavegotchiSideview(contract, {
-        haunt: traits.haunt,
-        collateral: traits.collateral,
+  const handleFetch = useCallback((
+    gotchiTraits: Traits,
+    equipped: Wearables,
+    diamondContact?: ethers.Contract
+  ) => {
+    if (diamondContact) {
+      getPreviewAavegotchiSideview(diamondContact, {
+        haunt: gotchiTraits.haunt,
+        collateral: gotchiTraits.collateral,
         wearables: [
-          wearables.body,
-          wearables.face,
-          wearables.eyes,
-          wearables.head,
-          wearables.handLeft,
-          wearables.handRight,
-          wearables.pet,
-          wearables.background,
+          equipped.body,
+          equipped.face,
+          equipped.eyes,
+          equipped.head,
+          equipped.handLeft,
+          equipped.handRight,
+          equipped.pet,
+          equipped.background,
           0,
           0,
           0,
@@ -108,42 +111,63 @@ const PreviewSideAavegotchiPage = ({ contract }: Props) => {
           0,
           0,
         ],
-        numericTraits: [50, 50, 50, 50, traits.eyeShape, traits.eyeColor],
+        numericTraits: [
+          50,
+          50,
+          50,
+          50,
+          gotchiTraits.eyeShape,
+          gotchiTraits.eyeColor,
+        ],
       });
     }
-  }, [contract, traits, wearables]);
+  }, []);
+
+  useEffect(() => {
+    handleFetch(traits, wearables, contract);
+  }, [contract, traits, wearables, handleFetch]);
 
   return (
     <>
       <div className={`loader-container ${loading ? "active" : ""}`}>
         <Loader />
       </div>
-      {previewGotchiSideviews ? (
-        <div className="sideviews-container">
-          <img
-            src={convertInlineSVGToBlobURL(previewGotchiSideviews[0])}
-            alt="Front"
-            width="100%"
-          />
-          <img
-            src={convertInlineSVGToBlobURL(previewGotchiSideviews[1])}
-            alt="Left"
-            width="100%"
-          />
-          <img
-            src={convertInlineSVGToBlobURL(previewGotchiSideviews[2])}
-            alt="Right"
-            width="100%"
-          />
-          <img
-            src={convertInlineSVGToBlobURL(previewGotchiSideviews[3])}
-            alt="Back"
-            width="100%"
-          />
-        </div>
-      ) : (
-        <div className="img-loading-container" />
-      )}
+      <div className="display-container">
+        {!loading && (
+          <button
+            className="refresh-button"
+            onClick={() => handleFetch(traits, wearables, contract)}
+          >
+            Refresh
+          </button>
+        )}
+        {previewGotchiSideviews ? (
+          <div className="sideviews-container">
+            <img
+              src={convertInlineSVGToBlobURL(previewGotchiSideviews[0])}
+              alt="Front"
+              width="100%"
+            />
+            <img
+              src={convertInlineSVGToBlobURL(previewGotchiSideviews[1])}
+              alt="Left"
+              width="100%"
+            />
+            <img
+              src={convertInlineSVGToBlobURL(previewGotchiSideviews[2])}
+              alt="Right"
+              width="100%"
+            />
+            <img
+              src={convertInlineSVGToBlobURL(previewGotchiSideviews[3])}
+              alt="Back"
+              width="100%"
+            />
+          </div>
+        ) : (
+          <div className="img-loading-container" />
+        )}
+      </div>
       <PreviewModifierPanel
         setTrait={({ trait, value }) =>
           setTraits({

@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Loader } from "../../components/loader";
 import { convertInlineSVGToBlobURL } from "../../helpers";
 
@@ -27,29 +27,42 @@ const GetAavegotchiSvgPage = ({ contract }: Props) => {
     }
   };
 
-  // Once Aavegotchis have fetched, get the first Aavegotchis sideviews + Preview gotchi sidviews
-  useEffect(() => {
-    if (contract) {
-      getAavegotchiSvg(contract, tokenId);
+  const handleFetch = useCallback((id: string, diamondContract?: ethers.Contract) => {
+    if (diamondContract) {
+      getAavegotchiSvg(diamondContract, id);
     }
-  }, [contract, tokenId]);
+  }, [])
+
+  useEffect(() => {
+    handleFetch(tokenId, contract)
+  }, [contract, tokenId, handleFetch]);
 
   return (
     <>
       <div className={`loader-container ${loading ? "active" : ""}`}>
         <Loader />
       </div>
-      {gotchiSvg ? (
-        <div className="sideviews-container">
-          <img
-            src={convertInlineSVGToBlobURL(gotchiSvg)}
-            alt="Front"
-            height="100%"
-          />
-        </div>
-      ) : (
-        <div className="img-loading-container" />
-      )}
+      <div className="display-container">
+        {!loading && (
+          <button
+            className="refresh-button"
+            onClick={() => handleFetch(tokenId, contract)}
+          >
+            Refresh
+          </button>
+        )}
+        {gotchiSvg ? (
+          <div className="sideviews-container">
+            <img
+              src={convertInlineSVGToBlobURL(gotchiSvg)}
+              alt="Front"
+              height="100%"
+            />
+          </div>
+        ) : (
+          <div className="img-loading-container" />
+        )}
+      </div>
       <div className="modifier-panel">
         <div className="container">
           <h2>Token ID</h2>

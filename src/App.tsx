@@ -21,12 +21,12 @@ declare global {
 
 const navigation = [
   {
-    title: "previewSideAavegotchi",
+    title: "previewAavegotchi",
     path: "/",
   },
   {
-    title: "previewAavegotchi",
-    path: "/previewAavegotchi"
+    title: "previewSideAavegotchi",
+    path: "/previewSideAavegotchi"
   },
   {
     title: "getAavegotchiSvg",
@@ -81,10 +81,10 @@ function App() {
         </div>
         <Switch>
           <Route path="/" exact>
-            <PreviewSideAavegotchiPage contract={diamondContract} />
-          </Route>
-          <Route path="/previewAavegotchi" exact>
             <PreviewAavegotchiPage contract={diamondContract} />
+          </Route>
+          <Route path="/previewSideAavegotchi" exact>
+            <PreviewSideAavegotchiPage contract={diamondContract} />
           </Route>
           <Route path="/getAavegotchiSvg">
             <GetAavegotchiSvgPage contract={diamondContract} />

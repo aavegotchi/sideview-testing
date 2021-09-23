@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Loader } from "../../components/loader";
 import { convertInlineSVGToBlobURL } from "../../helpers";
 import { Tuple } from "../../types";
@@ -15,7 +15,7 @@ const GetAavegotchiSideSvgsPage = ({ contract }: Props) => {
 
   const getAavegotchiSvg = async (
     contract: ethers.Contract,
-    tokenId: string,
+    tokenId: string
   ) => {
     setLoading(true);
     try {
@@ -28,51 +28,67 @@ const GetAavegotchiSideSvgsPage = ({ contract }: Props) => {
     }
   };
 
-  // Once Aavegotchis have fetched, get the first Aavegotchis sideviews + Preview gotchi sidviews
+  const handleFetch = useCallback(
+    (id: string, diamondContract?: ethers.Contract) => {
+      if (diamondContract) {
+        getAavegotchiSvg(diamondContract, id);
+      }
+    },
+    []
+  );
+
   useEffect(() => {
-    if (contract) {
-      getAavegotchiSvg(contract, tokenId);
-    }
-  }, [contract, tokenId]);
+    handleFetch(tokenId, contract);
+  }, [contract, tokenId, handleFetch]);
 
   return (
     <>
       <div className={`loader-container ${loading ? "active" : ""}`}>
         <Loader />
       </div>
-      {gotchiSideSvg ? (
-        <div className="sideviews-container">
-          <img
-            src={convertInlineSVGToBlobURL(gotchiSideSvg[0])}
-            alt="Front"
-            width="100%"
-          />
-          <img
-            src={convertInlineSVGToBlobURL(gotchiSideSvg[1])}
-            alt="Left"
-            width="100%"
-          />
-          <img
-            src={convertInlineSVGToBlobURL(gotchiSideSvg[2])}
-            alt="Right"
-            width="100%"
-          />
-          <img
-            src={convertInlineSVGToBlobURL(gotchiSideSvg[3])}
-            alt="Back"
-            width="100%"
-          />
-        </div>
-      ) : (
-        <div className="img-loading-container" />
-      )}
+      <div className="display-container">
+        {!loading && (
+          <button
+            className="refresh-button"
+            onClick={() => handleFetch(tokenId, contract)}
+          >
+            Refresh
+          </button>
+        )}
+        {gotchiSideSvg ? (
+          <div className="sideviews-container">
+            <img
+              src={convertInlineSVGToBlobURL(gotchiSideSvg[0])}
+              alt="Front"
+              width="100%"
+            />
+            <img
+              src={convertInlineSVGToBlobURL(gotchiSideSvg[1])}
+              alt="Left"
+              width="100%"
+            />
+            <img
+              src={convertInlineSVGToBlobURL(gotchiSideSvg[2])}
+              alt="Right"
+              width="100%"
+            />
+            <img
+              src={convertInlineSVGToBlobURL(gotchiSideSvg[3])}
+              alt="Back"
+              width="100%"
+            />
+          </div>
+        ) : (
+          <div className="img-loading-container" />
+        )}
+      </div>
       <div className="modifier-panel">
         <div className="container">
           <h2>Token ID</h2>
           {/* tokenId input */}
           <label htmlFor="token-id">Token ID:</label>
           <input value={tokenId} onChange={(e) => setTokenId(e.target.value)} />
-          </div>
+        </div>
       </div>
     </>
   );

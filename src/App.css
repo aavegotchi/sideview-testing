@@ -4,6 +4,9 @@
   position: relative;
 }
 
+.display-container {
+  position: relative;
+}
 .sideviews-container {
   display: grid;
   grid-template-columns: repeat(4, 25%);
@@ -47,4 +50,10 @@
 .modifier-panel {
   padding-bottom: 5.4rem;
   background-color: #f6f6f6;
+}
+
+.refresh-button {
+  position: absolute;
+  top: 0.8rem;
+  right: 3.2rem;
 }
