@@ -5,7 +5,14 @@
 }
 
 .sideviews-container {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
 }
+.img-loading-container {
+  width: 100%;
+  padding-top: 25%;
+}
+
 .loader-container {
   position: absolute;
   right: 2.4rem;
@@ -35,4 +42,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.2rem;
+}
+
+.modifier-panel {
+  padding-bottom: 5.4rem;
+  background-color: #f6f6f6;
 }

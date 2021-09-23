@@ -1,0 +1,56 @@
+.layout-container {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 7.2rem 1fr;
+}
+
+.header {
+  background-color: #13022E;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container {
+  padding: 0.8rem 3.2rem 1.2rem;
+}
+.container label {
+  margin-right: 0.4rem;
+}
+.container select {
+  margin-right: 1.2rem;
+}
+
+.content-container {
+  position: relative;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+}
+
+.sidebar-container {
+  background-color: #13022E;
+  height: 100%;
+}
+
+.sidebar {
+  margin: 0;
+  margin-block-start: 0;
+  padding-inline-start: 0;
+}
+
+.sidebar a {
+  display: block;
+  text-decoration: none;
+  padding: 1.2rem 0rem 1.2rem 0.4rem;
+  color: white;
+  border-top: 2px solid #5420B4;
+}
+.sidebar li:last-child a {
+  border-bottom: 2px solid #5420B4;
+}
+.sidebar a.active {
+  background-color: #DD26D7;
+}
