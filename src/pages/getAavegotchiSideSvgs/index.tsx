@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Loader } from "../../components/loader";
-import { convertInlineSVGToBlobURL } from "../../helpers";
+import { convertInlineSVGToBlobURL, animationStyles } from "../../helpers";
 import { Tuple } from "../../types";
 
 interface Props {
@@ -12,6 +12,7 @@ const GetAavegotchiSideSvgsPage = ({ contract }: Props) => {
   const [loading, setLoading] = useState(false);
   const [gotchiSideSvg, setGotchiSideSvg] = useState<Tuple<string, 4>>();
   const [tokenId, setTokenId] = useState<string>("2601");
+  const [animate, setAnimate] = useState(false);
 
   const getAavegotchiSvg = async (
     contract: ethers.Contract,
@@ -21,25 +22,22 @@ const GetAavegotchiSideSvgsPage = ({ contract }: Props) => {
     try {
       const res = await contract.getAavegotchiSideSvgs(tokenId);
       setLoading(false);
-      setGotchiSideSvg(res);
+      setGotchiSideSvg(
+        res.map((svg: string) => {
+          console.log(animate);
+          if (!animate) return svg;
+          return svg.split("<style>").join(`<style>${animationStyles}`);
+        })
+      );
     } catch (error) {
       setLoading(false);
       console.log(error);
     }
   };
 
-  const handleFetch = useCallback(
-    (id: string, diamondContract?: ethers.Contract) => {
-      if (diamondContract) {
-        getAavegotchiSvg(diamondContract, id);
-      }
-    },
-    []
-  );
-
   useEffect(() => {
-    handleFetch(tokenId, contract);
-  }, [contract, tokenId, handleFetch]);
+    if (contract) getAavegotchiSvg(contract, tokenId);
+  }, [contract, tokenId, animate]);
 
   return (
     <>
@@ -47,10 +45,10 @@ const GetAavegotchiSideSvgsPage = ({ contract }: Props) => {
         <Loader />
       </div>
       <div className="display-container">
-        {!loading && (
+        {!loading && contract && (
           <button
             className="refresh-button"
-            onClick={() => handleFetch(tokenId, contract)}
+            onClick={() => getAavegotchiSvg(contract, tokenId)}
           >
             Refresh
           </button>
@@ -87,7 +85,17 @@ const GetAavegotchiSideSvgsPage = ({ contract }: Props) => {
           <h2>Token ID</h2>
           {/* tokenId input */}
           <label htmlFor="token-id">Token ID:</label>
-          <input value={tokenId} onChange={(e) => setTokenId(e.target.value)} />
+          <input value={tokenId} onChange={e => setTokenId(e.target.value)} />
+          <div style={{ display: "flex" }}>
+            <input
+              type="checkbox"
+              value={Number(animate)}
+              onChange={e => {
+                setAnimate(!animate);
+              }}
+            />
+            <div>Animate</div>
+          </div>
         </div>
       </div>
     </>

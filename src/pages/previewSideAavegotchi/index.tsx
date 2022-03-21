@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Loader } from "../../components/loader";
 import { Tuple } from "../../types";
 import { Collaterals, collateralToAddress } from "../../vars";
-import { convertInlineSVGToBlobURL } from "../../helpers";
+import { convertInlineSVGToBlobURL, animationStyles } from "../../helpers";
 import { PreviewModifierPanel } from "../../components/previewModifierPanel";
 
 interface Traits {
@@ -32,13 +32,15 @@ interface Props {
 
 const PreviewSideAavegotchiPage = ({ contract }: Props) => {
   const [loading, setLoading] = useState(false);
-  const [previewGotchiSideviews, setPreviewGotchiSideviews] =
-    useState<Tuple<string, 4>>();
+  const [animate, setAnimate] = useState(false);
+  const [previewGotchiSideviews, setPreviewGotchiSideviews] = useState<
+    Tuple<string, 4>
+  >();
   const [traits, setTraits] = useState<Traits>({
     haunt: "1",
     collateral: "aAAVE",
     eyeShape: 0,
-    eyeColor: 0,
+    eyeColor: 0
   });
   const [wearables, setWearables] = useState<Wearables>({
     body: 0,
@@ -77,55 +79,89 @@ const PreviewSideAavegotchiPage = ({ contract }: Props) => {
         equippedWearables
       );
       setLoading(false);
-      setPreviewGotchiSideviews(res);
+      console.log(res, res[1]);
+      setPreviewGotchiSideviews(
+        res.map((svg: string) => {
+          if (!animate) return svg;
+          return svg.split("<style>").join(`<style>${animationStyles}`);
+        })
+      );
     } catch (error) {
       setLoading(false);
       console.log(error);
     }
   };
 
-  const handleFetch = useCallback((
-    gotchiTraits: Traits,
-    equipped: Wearables,
-    diamondContact?: ethers.Contract
-  ) => {
-    if (diamondContact) {
-      getPreviewAavegotchiSideview(diamondContact, {
-        haunt: gotchiTraits.haunt,
-        collateral: gotchiTraits.collateral,
-        wearables: [
-          equipped.body,
-          equipped.face,
-          equipped.eyes,
-          equipped.head,
-          equipped.handLeft,
-          equipped.handRight,
-          equipped.pet,
-          equipped.background,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-        ],
-        numericTraits: [
-          50,
-          50,
-          50,
-          50,
-          gotchiTraits.eyeShape,
-          gotchiTraits.eyeColor,
-        ],
-      });
-    }
-  }, []);
+  const handleFetch = useCallback(
+    (
+      gotchiTraits: Traits,
+      equipped: Wearables,
+      diamondContact?: ethers.Contract
+    ) => {
+      if (diamondContact) {
+        getPreviewAavegotchiSideview(diamondContact, {
+          haunt: gotchiTraits.haunt,
+          collateral: gotchiTraits.collateral,
+          wearables: [
+            equipped.body,
+            equipped.face,
+            equipped.eyes,
+            equipped.head,
+            equipped.handLeft,
+            equipped.handRight,
+            equipped.pet,
+            equipped.background,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          numericTraits: [
+            50,
+            50,
+            50,
+            50,
+            gotchiTraits.eyeShape,
+            gotchiTraits.eyeColor
+          ]
+        });
+      }
+    },
+    []
+  );
 
   useEffect(() => {
-    handleFetch(traits, wearables, contract);
-  }, [contract, traits, wearables, handleFetch]);
+    // handleFetch(traits, wearables, contract);
+    if (contract) {
+      getPreviewAavegotchiSideview(contract, {
+        haunt: traits.haunt,
+        collateral: traits.collateral,
+        wearables: [
+          wearables.body,
+          wearables.face,
+          wearables.eyes,
+          wearables.head,
+          wearables.handLeft,
+          wearables.handRight,
+          wearables.pet,
+          wearables.background,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        numericTraits: [50, 50, 50, 50, traits.eyeShape, traits.eyeColor]
+      });
+    }
+  }, [contract, traits, wearables, handleFetch, animate]);
 
   return (
     <>
@@ -133,10 +169,41 @@ const PreviewSideAavegotchiPage = ({ contract }: Props) => {
         <Loader />
       </div>
       <div className="display-container">
-        {!loading && (
+        {!loading && contract && (
           <button
             className="refresh-button"
-            onClick={() => handleFetch(traits, wearables, contract)}
+            onClick={() =>
+              getPreviewAavegotchiSideview(contract, {
+                haunt: traits.haunt,
+                collateral: traits.collateral,
+                wearables: [
+                  wearables.body,
+                  wearables.face,
+                  wearables.eyes,
+                  wearables.head,
+                  wearables.handLeft,
+                  wearables.handRight,
+                  wearables.pet,
+                  wearables.background,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                numericTraits: [
+                  50,
+                  50,
+                  50,
+                  50,
+                  traits.eyeShape,
+                  traits.eyeColor
+                ]
+              })
+            }
           >
             Refresh
           </button>
@@ -182,6 +249,8 @@ const PreviewSideAavegotchiPage = ({ contract }: Props) => {
           })
         }
         equipped={wearables}
+        animate={animate}
+        setAnimate={setAnimate}
       />
     </>
   );

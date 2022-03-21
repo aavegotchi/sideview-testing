@@ -54,20 +54,40 @@ interface Props {
           value: number;
         }
   ) => void;
-  setWearable: (value: { slot: EquipPosition, value: number }) => void;
+  setWearable: (value: { slot: EquipPosition; value: number }) => void;
   equipped: Wearables;
+  animate?: boolean;
+  setAnimate?: (arg: boolean) => void;
 }
 
-export const PreviewModifierPanel = ({ setTrait, setWearable, equipped }: Props) => {
+export const PreviewModifierPanel = ({
+  setTrait,
+  setWearable,
+  equipped,
+  animate,
+  setAnimate
+}: Props) => {
   return (
     <div className="modifier-panel">
       <div className="container">
         <h2>Traits</h2>
+        {setAnimate && (
+          <div style={{ display: "flex" }}>
+            <input
+              type="checkbox"
+              value={Number(animate)}
+              onChange={e => {
+                setAnimate(!animate);
+              }}
+            />
+            <div>Animate</div>
+          </div>
+        )}
         {/* Haunt input */}
         <label htmlFor="haunt">Haunt:</label>
         <select
           name="haunt"
-          onChange={(e) => {
+          onChange={e => {
             const value = e.target.value as "1" | "2";
             setTrait({ trait: "haunt", value });
           }}
