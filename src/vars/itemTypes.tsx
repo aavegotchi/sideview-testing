@@ -1380,4 +1380,105 @@ export const itemTypes: ItemTypes = {
     name: "Haanzo Katana",
     slotPositions: "hands",
   },
+
+  350: {
+    svgId: 350,
+    name: "Pixelcraft Tee",
+    slotPositions: "body",
+  },
+  351: {
+    svgId: 351,
+    name: "3D Glasses",
+    slotPositions: "eyes",
+  },
+  352: {
+    svgId: 352,
+    name: "Pixelcraft Square",
+    slotPositions: "hands",
+  },
+  353: {
+    svgId: 353,
+    name: "Nimbus",
+    slotPositions: "pet",
+  },
+  354: {
+    svgId: 354,
+    name: "Alchemica Apron",
+    slotPositions: "body",
+  },
+  355: {
+    svgId: 355,
+    name: "Safety Glasses",
+    slotPositions: "eyes",
+  },
+  356: {
+    svgId: 356,
+    name: "Bandage",
+    slotPositions: "face",
+  },
+  357: {
+    svgId: 357,
+    name: "Nail Gun",
+    slotPositions: "hands",
+  },
+  358: {
+    svgId: 358,
+    name: "Flaming Apron",
+    slotPositions: "body",
+  },
+  359: {
+    svgId: 359,
+    name: "Forge Goggles",
+    slotPositions: "eyes",
+  },
+  360: {
+    svgId: 360,
+    name: "Geode Smasher",
+    slotPositions: "hands",
+  },
+  361: {
+    svgId: 361,
+    name: "Geo",
+    slotPositions: "pet",
+  },
+  362: {
+    svgId: 362,
+    name: "FAKE Shirt",
+    slotPositions: "body",
+  },
+  363: {
+    svgId: 363,
+    name: "FAKE Beret",
+    slotPositions: "head",
+  },
+  364: {
+    svgId: 364,
+    name: "Paint Brush",
+    slotPositions: "hands",
+  },
+  365: {
+    svgId: 365,
+    name: "Paint Palette",
+    slotPositions: "hands",
+  },
+  366: {
+    svgId: 366,
+    name: "Heavenly Robes",
+    slotPositions: "body",
+  },
+  367: {
+    svgId: 367,
+    name: "Eyes of Devotion",
+    slotPositions: "eyes",
+  },
+  368: {
+    svgId: 368,
+    name: "Beard of Divinity",
+    slotPositions: "face",
+  },
+  369: {
+    svgId: 369,
+    name: "Staff of Creation",
+    slotPositions: "hands",
+  },
 };
