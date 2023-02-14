@@ -48,7 +48,7 @@ function App() {
   const connectToNetwork = async (eth: any, rpc: string) => {
     try {
       setLoading(true);
-      await eth.enable();
+      // await eth.enable();
       // Construct contract from users provider, the diamond contracts address and ABI
 
       const provider = rpc
