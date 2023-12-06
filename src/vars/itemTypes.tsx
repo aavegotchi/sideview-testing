@@ -1481,4 +1481,94 @@ export const itemTypes: ItemTypes = {
     name: "Staff of Creation",
     slotPositions: "hands",
   },
+  370: {
+    svgId: 370,
+    name: "Wavy Hair",
+    slotPositions: "head",
+  },
+  371: {
+    svgId: 371,
+    name: "Plastic Earrings",
+    slotPositions: "face",
+  },
+  372: {
+    svgId: 372,
+    name: "Party Dress",
+    slotPositions: "body",
+  },
+  373: {
+    svgId: 373,
+    name: "Overalls",
+    slotPositions: "body",
+  },
+  374: {
+    svgId: 374,
+    name: "Lens Frens Plant",
+    slotPositions: "pet",
+  },
+  375: {
+    svgId: 375,
+    name: "GM Seeds",
+    slotPositions: "hands",
+  },
+  376: {
+    svgId: 376,
+    name: "Lick Brain",
+    slotPositions: "head",
+  },
+  377: {
+    svgId: 377,
+    name: "Lick Eyes",
+    slotPositions: "eyes",
+  },
+  378: {
+    svgId: 378,
+    name: "Lick Tongue",
+    slotPositions: "face",
+  },
+  379: {
+    svgId: 379,
+    name: "Lick Tentacle",
+    slotPositions: "hands",
+  },
+  380: {
+    svgId: 380,
+    name: "Sebastien Hair",
+    slotPositions: "head",
+  },
+  381: {
+    svgId: 381,
+    name: "Voxel Eyes",
+    slotPositions: "eyes",
+  },
+  382: {
+    svgId: 382,
+    name: "GOATee",
+    slotPositions: "face",
+  },
+  383: {
+    svgId: 383,
+    name: "Sandbox Hoodie",
+    slotPositions: "body",
+  },
+  384: {
+    svgId: 384,
+    name: "Faangs",
+    slotPositions: "face",
+  },
+  385: {
+    svgId: 385,
+    name: "Block Scanners",
+    slotPositions: "eyes",
+  },
+  386: {
+    svgId: 386,
+    name: "Staff Charming",
+    slotPositions: "hands",
+  },
+  387: {
+    svgId: 387,
+    name: "Roflnoggin",
+    slotPositions: "head",
+  },
 };
