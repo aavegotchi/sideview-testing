@@ -1509,7 +1509,7 @@ export const itemTypes: ItemTypes = {
   375: {
     svgId: 375,
     name: "GM Seeds",
-    slotPositions: "hands",
+    slotPositions: "handLeft",
   },
   376: {
     svgId: 376,
