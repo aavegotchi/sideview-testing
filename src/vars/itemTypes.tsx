@@ -1571,73 +1571,73 @@ export const itemTypes: ItemTypes = {
     name: "Roflnoggin",
     slotPositions: "head",
   },
-  388: {
-    svgId: 388,
+  404: {
+    svgId: 404,
     name: "Granny Glasses",
     slotPositions: "eyes",
   },
-  389: {
-    svgId: 389,
+  405: {
+    svgId: 405,
     name: "Freckles",
     slotPositions: "face",
   },
-  390: {
-    svgId: 390,
+  406: {
+    svgId: 406,
     name: "Common Stohn",
     slotPositions: "pet",
   },
-  391: {
-    svgId: 391,
+  407: {
+    svgId: 407,
     name: "Based Shades",
     slotPositions: "eyes",
   },
-  392: {
-    svgId: 392,
+  408: {
+    svgId: 408,
     name: "Rasta Glasses",
     slotPositions: "eyes",
   },
-  393: {
-    svgId: 393,
+  409: {
+    svgId: 409,
     name: "Braces",
     slotPositions: "face",
   },
-  394: {
-    svgId: 394,
+  410: {
+    svgId: 410,
     name: "Uncommon Stohn",
     slotPositions: "pet",
   },
-  395: {
-    svgId: 395,
+  411: {
+    svgId: 411,
     name: "Aloha Flowers",
     slotPositions: "face",
   },
-  396: {
-    svgId: 396,
+  412: {
+    svgId: 412,
     name: "Baable Gum",
     slotPositions: "face",
   },
-  397: {
-    svgId: 397,
+  413: {
+    svgId: 413,
     name: "Rare Stohn",
     slotPositions: "pet",
   },
-  398: {
-    svgId: 398,
+  414: {
+    svgId: 414,
     name: "Cheap Mask",
     slotPositions: "face",
   },
-  399: {
-    svgId: 399,
+  415: {
+    svgId: 415,
     name: "Wild Fungi",
     slotPositions: "pet",
   },
-  400: {
-    svgId: 400,
+  416: {
+    svgId: 416,
     name: "Kawaii Mouth",
     slotPositions: "face",
   },
-  401: {
-    svgId: 401,
+  417: {
+    svgId: 417,
     name: "Baby Licky",
     slotPositions: "pet",
   },
