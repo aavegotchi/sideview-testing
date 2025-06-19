@@ -11,7 +11,7 @@ import PreviewAavegotchiPage from "./pages/previewAavegotchi";
 import GetAavegotchiSvgPage from "./pages/getAavegotchiSvg";
 import GetAavegotchiSideSvgsPage from "./pages/getAavegotchiSideSvgs";
 
-const diamondAddress = "0x86935F11C86623deC8a25696E1C19a8659CbF95d";
+const diamondAddress = "0xf28469b81871D924ae70664FEBf5AF626AAe5087";
 
 declare global {
   interface Window {
@@ -26,17 +26,17 @@ const navigation = [
   },
   {
     title: "previewSideAavegotchi",
-    path: "/previewSideAavegotchi"
+    path: "/previewSideAavegotchi",
   },
   {
     title: "getAavegotchiSvg",
-    path: "/getAavegotchiSvg"
+    path: "/getAavegotchiSvg",
   },
   {
     title: "getAavegotchiSideSvgs",
-    path: "/getAavegotchiSideSvgs"
-  }
-]
+    path: "/getAavegotchiSideSvgs",
+  },
+];
 
 function App() {
   // IF RUNNING LOCALLY - FIX WITH LOCAL NODE URL
