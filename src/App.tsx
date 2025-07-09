@@ -11,7 +11,7 @@ import PreviewAavegotchiPage from "./pages/previewAavegotchi";
 import GetAavegotchiSvgPage from "./pages/getAavegotchiSvg";
 import GetAavegotchiSideSvgsPage from "./pages/getAavegotchiSideSvgs";
 
-const diamondAddress = "0xf28469b81871D924ae70664FEBf5AF626AAe5087";
+const diamondAddress = "0x03A74B3e2DD81F5E8FFA1Fb96bb81B35cF3ed5d2";
 
 declare global {
   interface Window {
