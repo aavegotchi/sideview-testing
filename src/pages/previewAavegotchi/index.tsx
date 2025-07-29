@@ -60,7 +60,7 @@ const PreviewAavegotchiPage = ({ contract }: Props) => {
     }
   ) => {
     setLoading(true);
-    const equippedWearablesa = options?.wearables;
+    const equippedWearablesa = options;
     try {
       const withSetsNumericTraits: Tuple<number, 6> =
         options?.numericTraits || [50, 50, 50, 50, 50, 50];
