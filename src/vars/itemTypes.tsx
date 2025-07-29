@@ -1641,4 +1641,19 @@ export const itemTypes: ItemTypes = {
     name: "Baby Licky",
     slotPositions: "pet",
   },
+  418: {
+    svgId: 418,
+    name: "Based Shirt",
+    slotPositions: "body",
+  },
+  419: {
+    svgId: 419,
+    name: "Base App",
+    slotPositions: "hands",
+  },
+  420: {
+    svgId: 420,
+    name: "jesse Pollak Hair",
+    slotPositions: "head",
+  },
 };
