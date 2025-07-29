@@ -75,6 +75,7 @@ const PreviewAavegotchiPage = ({ contract }: Props) => {
         withSetsNumericTraits,
         equippedWearables
       );
+      console.log(equippedWearables);
       setLoading(false);
       setPreviewGotchi(res);
     } catch (error) {

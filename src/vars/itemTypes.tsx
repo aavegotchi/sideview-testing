@@ -1653,7 +1653,7 @@ export const itemTypes: ItemTypes = {
   },
   420: {
     svgId: 420,
-    name: "jesse Pollak Hair",
+    name: "Jesse Pollak Hair",
     slotPositions: "head",
   },
 };
