@@ -256,7 +256,7 @@ export const itemTypes: ItemTypes = {
     svgId: 40,
     name: "Foxy Tail",
 
-    slotPositions: "body",
+    slotPositions: "pet",
   },
   41: {
     svgId: 41,
